@@ -18,8 +18,8 @@ const App = () => {
       {
         id: 2,
         text: '리액트 스터디 참여하기',
-        checked: true,
-        completed: true
+        checked: false,
+        completed: false
       },
       {
         id: 3,

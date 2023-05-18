@@ -8,17 +8,16 @@
 }
 
 .TodoTemplate .app-title{
-  height: 4rem;
   background: #F0BEEF;
   color: #000;
   font-size: 1.5rem;
   font-weight: bold;
-  line-height: 4rem;
   text-align: center;
+  padding: 1rem 0;
 }
 
 .TodoTemplate .app-count{
-  font-weight: bold;
+  font-size: 1rem;
 }
 .TodoTemplate .app-content{
   background: rgba(255,255,255, 0.5);
