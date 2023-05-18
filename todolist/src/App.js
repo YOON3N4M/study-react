@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
 import { useState, useCallback , useEffect, useRef} from 'react';
-import TodoTemplate from './TodoTemplate';
-import TodoList from './TodoList';
-import TodoInsert from './TodoInsert';
+import TodoTemplate from '../src/components/TodoTemplate';
+import TodoList from '../src/components/TodoList';
+import TodoInsert from '../src/components/TodoInsert';
 
 
 const App = () => {
@@ -69,11 +69,11 @@ const App = () => {
     []
   );
 
-  // 완료도 항목 일괄 삭제
+  // 완료 항목 일괄 삭제
   const clearComplete = useCallback(
     completed => {
       setTodos(todos => 
-        todos.filter(todo => todo.completed === false)
+        todos.filter(todo => todo.completed !== true)
       );
     },
     []
