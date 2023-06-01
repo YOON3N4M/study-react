@@ -23,12 +23,17 @@
   background: rgba(255,255,255, 0.5);
   padding-bottom: 0.5rem;
 }
+.btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
 .clear-btn {
   font-size: 1rem;
   text-align: center;
   color: #000;
   border-radius: 4px;
   padding: 0.5rem 1rem;
-  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont,'Noto Sans KR', sans-serif;
 }
