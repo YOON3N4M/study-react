@@ -13,19 +13,19 @@ const App = () => {
         id: 1,
         text: '리액트 TodoList 만들기',
         checked: true,
-        completed: true
+        // completed: true
       },
       {
         id: 2,
         text: '리액트 스터디 참여하기',
         checked: false,
-        completed: false
+        // completed: false
       },
       {
         id: 3,
         text: '눈누난나 퇴근',
         checked: false,
-        completed: false
+        // completed: false
       },
     ])
 
@@ -70,14 +70,15 @@ const App = () => {
   );
 
   // 완료 항목 일괄 삭제
-  const clearComplete = useCallback(
-    completed => {
-      setTodos(todos => 
-        todos.filter(todo => todo.completed !== true)
-      );
-    },
-    []
-  );
+  const clearComplete = useCallback(() => {
+      setTodos(todos => todos.filter(todo => todo.checked !== true)); // checked가 false인 것만 남기는 배열 재생성
+    }, []);
+
+
+  // 전체 항목 삭제
+  const clearAll = useCallback(() => {
+    setTodos(todos => todos.filter(todo => todo === ''))
+  }, []);
 
 
   useEffect(() => {
@@ -94,7 +95,7 @@ const App = () => {
     , [todos]);
 
   return (
-    <TodoTemplate todoLength={todos.length} clearComplete={clearComplete}>
+    <TodoTemplate todoLength={todos.length} clearComplete={clearComplete} clearAll={clearAll}>
       <TodoInsert onInsert={onInsert} />
       <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
