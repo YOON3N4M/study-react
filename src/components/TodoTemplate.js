@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import InsertTodo from "./InsertTodo";
 
 const TodoContainer = styled.div`
   display: flex;
@@ -33,7 +35,7 @@ const TodoContainer = styled.div`
 /* 
 interface TodoT {
 type: string,
-contents: string,
+todo: string,
 username: string,
 checked: boolean,
 
@@ -49,7 +51,7 @@ function TodoTemplate() {
           <h1>일정관리</h1>
         </div>
         <div className="todo-insert">
-          <input></input>
+          <InsertTodo />
         </div>
         <div className="todo-contents"></div>
       </TodoContainer>

@@ -1,4 +1,11 @@
 {
-  "todos": [],
+  "todos": [
+    {
+      "type": "살 것",
+      "test": "코코",
+      "isCheck": false,
+      "id": 1
+    }
+  ],
   "username": []
 }
