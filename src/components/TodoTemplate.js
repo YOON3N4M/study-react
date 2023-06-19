@@ -45,6 +45,7 @@ checked: boolean,
 export const API_URL = "http://localhost:3001/todos";
 
 function TodoTemplate() {
+  const [todos, setTodos] = useState([]);
   return (
     <>
       <TodoContainer>
@@ -52,10 +53,10 @@ function TodoTemplate() {
           <h1>일정관리</h1>
         </div>
         <div className="todo-insert">
-          <InsertTodo />
+          <InsertTodo todos={todos} setTodos={setTodos} />
         </div>
         <div className="todo-contents">
-          <TodoList />
+          <TodoList todos={todos} setTodos={setTodos} />
         </div>
       </TodoContainer>
     </>

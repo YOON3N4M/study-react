@@ -2,21 +2,21 @@ import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "./TodoTemplate";
 
-export default function InsertTodo() {
+export default function InsertTodo({ todos, setTodos }) {
   const [todo, setTodo] = useState("");
   const [selectedType, setSelectedType] = useState("할 것");
 
   function onSubmit(event) {
     event.preventDefault();
-    axios({
-      method: "post",
-      url: API_URL,
-      data: {
-        type: selectedType,
-        todoText: todo,
-        isCheck: false,
-      },
-    });
+
+    let todoTemp = {
+      type: selectedType,
+      todoText: todo,
+      isCheck: false,
+    };
+    axios.post(API_URL, todoTemp);
+    setTodos([...todos, todoTemp]);
+    setTodo("");
   }
 
   function onTodoTextChange(event) {
