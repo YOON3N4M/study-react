@@ -28,8 +28,7 @@ const TodoContainer = styled.div`
     width: 100%;
   }
   .todo-contents {
-    background-color: purple;
-    height: 2rem;
+    background-color: white;
   }
 `;
 
@@ -43,6 +42,7 @@ checked: boolean,
 }
 
 */
+export const API_URL = "http://localhost:3001/todos";
 
 function TodoTemplate() {
   return (

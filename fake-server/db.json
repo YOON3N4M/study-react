@@ -1,17 +1,4 @@
 {
-  "todos": [
-    {
-      "type": "할 것",
-      "todoText": "투두만들기",
-      "isCheck": false,
-      "id": 1
-    },
-    {
-      "type": "살 것",
-      "todoText": "감자",
-      "isCheck": false,
-      "id": 2
-    }
-  ],
+  "todos": [],
   "username": []
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { API_URL } from "./TodoTemplate";
 
 export default function InsertTodo() {
   const [todo, setTodo] = useState("");
@@ -9,7 +10,7 @@ export default function InsertTodo() {
     event.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:3001/todos",
+      url: API_URL,
       data: {
         type: selectedType,
         todoText: todo,
