@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import InsertTodo from "./InsertTodo";
+import TodoList from "./TodoList";
 
 const TodoContainer = styled.div`
   display: flex;
@@ -53,7 +54,9 @@ function TodoTemplate() {
         <div className="todo-insert">
           <InsertTodo />
         </div>
-        <div className="todo-contents"></div>
+        <div className="todo-contents">
+          <TodoList />
+        </div>
       </TodoContainer>
     </>
   );

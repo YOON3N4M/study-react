@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function InsertTodo() {
   const [todo, setTodo] = useState("");
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState("할 것");
 
   function onSubmit(event) {
     event.preventDefault();
