@@ -20,9 +20,23 @@ export default function TodoList({ todos, setTodos, setNextId }) {
   }
 
   function deleteTodo(id) {
-    console.log(id);
     setTodos(todos.filter((todos) => todos.id !== id));
     axios.delete(API_URL + "/" + id);
+  }
+
+  function onChangeCheckBox(todoObj) {
+    const checkReverse = !todoObj.isCheck;
+
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === todoObj.id ? { ...todo, isCheck: checkReverse } : todo
+      )
+    );
+
+    axios.put(API_URL + "/" + todoObj.id, {
+      ...todoObj,
+      isCheck: checkReverse,
+    });
   }
 
   useEffect(() => {
@@ -35,7 +49,11 @@ export default function TodoList({ todos, setTodos, setNextId }) {
         {todos.length !== 0
           ? todos.map((todo) => (
               <div key={todo.id}>
-                <input type="checkbox" />
+                <input
+                  onClick={() => onChangeCheckBox(todo)}
+                  type="checkbox"
+                  value={todo.isCheck}
+                />
                 <span>{todo.todoText}</span>
                 <button onClick={() => deleteTodo(todo.id)}>삭제</button>
               </div>

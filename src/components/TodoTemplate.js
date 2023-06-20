@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import InsertTodo from "./InsertTodo";
 import TodoList from "./TodoList";
@@ -48,7 +48,10 @@ function TodoTemplate() {
   const [todos, setTodos] = useState([]);
   const [nextId, setNextId] = useState(1);
 
-  console.log(nextId);
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
   return (
     <>
       <TodoContainer>
