@@ -44,7 +44,7 @@ export default function TodoList({ todos, setTodos, setNextId }) {
   function clearAllTodos() {
     if (window.confirm("모든 항목을 삭제합니다.")) {
       //서버
-      todos.map((todo) => axios.delete(API_URL + "/" + todo.id));
+      todos.forEach((todo) => axios.delete(API_URL + "/" + todo.id));
       //로컬
       setTodos([]);
     }
@@ -53,9 +53,10 @@ export default function TodoList({ todos, setTodos, setNextId }) {
   function ClearCheckedTodos() {
     //window.confirm("완료된 항목을 모두 삭제하나요?");
     if (window.confirm("완료한 모든 항목을 삭제합니다.")) {
-      todos.map((todo) =>
+      todos.forEach((todo) =>
         todo.isCheck ? axios.delete(API_URL + "/" + todo.id) : null
       );
+
       setTodos((todos) => todos.filter((todo) => todo.isCheck !== true));
     }
   }
@@ -71,9 +72,9 @@ export default function TodoList({ todos, setTodos, setNextId }) {
           ? todos.map((todo) => (
               <div key={todo.id}>
                 <input
-                  onClick={() => onChangeCheckBox(todo)}
+                  onChange={() => onChangeCheckBox(todo)}
                   type="checkbox"
-                  value={todo.isCheck}
+                  checked={todo.isCheck}
                 />
                 <span>{todo.todoText}</span>
                 <button onClick={() => deleteTodo(todo.id)}>삭제</button>
