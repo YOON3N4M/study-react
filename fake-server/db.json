@@ -1,11 +1,4 @@
 {
-  "todos": [
-    {
-      "type": "할 것",
-      "todoText": "ㅁㄴㅇ",
-      "isCheck": true,
-      "id": 3
-    }
-  ],
+  "todos": [],
   "username": []
 }
