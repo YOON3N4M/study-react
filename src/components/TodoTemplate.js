@@ -46,6 +46,9 @@ export const API_URL = "http://localhost:3001/todos";
 
 function TodoTemplate() {
   const [todos, setTodos] = useState([]);
+  const [nextId, setNextId] = useState();
+
+  console.log(nextId);
   return (
     <>
       <TodoContainer>
@@ -53,10 +56,15 @@ function TodoTemplate() {
           <h1>일정관리</h1>
         </div>
         <div className="todo-insert">
-          <InsertTodo todos={todos} setTodos={setTodos} />
+          <InsertTodo
+            todos={todos}
+            setTodos={setTodos}
+            nextId={nextId}
+            setNextId={setNextId}
+          />
         </div>
         <div className="todo-contents">
-          <TodoList todos={todos} setTodos={setTodos} />
+          <TodoList todos={todos} setTodos={setTodos} setNextId={setNextId} />
         </div>
       </TodoContainer>
     </>

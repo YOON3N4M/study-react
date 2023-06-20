@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "./TodoTemplate";
 
-export default function InsertTodo({ todos, setTodos }) {
+export default function InsertTodo({ todos, setTodos, nextId, setNextId }) {
   const [todo, setTodo] = useState("");
   const [selectedType, setSelectedType] = useState("할 것");
 
@@ -13,9 +13,12 @@ export default function InsertTodo({ todos, setTodos }) {
       type: selectedType,
       todoText: todo,
       isCheck: false,
+      id: nextId,
     };
     axios.post(API_URL, todoTemp);
     setTodos([...todos, todoTemp]);
+    setNextId((prev) => prev + 1);
+    console.log(nextId);
     setTodo("");
   }
 
