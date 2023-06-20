@@ -9,6 +9,7 @@ export default function InsertTodo({ todos, setTodos, nextId, setNextId }) {
   function onSubmit(event) {
     event.preventDefault();
 
+    console.log(nextId);
     let todoTemp = {
       type: selectedType,
       todoText: todo,
@@ -18,7 +19,6 @@ export default function InsertTodo({ todos, setTodos, nextId, setNextId }) {
     axios.post(API_URL, todoTemp);
     setTodos([...todos, todoTemp]);
     setNextId((prev) => prev + 1);
-    console.log(nextId);
     setTodo("");
   }
 

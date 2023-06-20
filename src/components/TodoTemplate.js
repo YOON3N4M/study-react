@@ -46,7 +46,7 @@ export const API_URL = "http://localhost:3001/todos";
 
 function TodoTemplate() {
   const [todos, setTodos] = useState([]);
-  const [nextId, setNextId] = useState();
+  const [nextId, setNextId] = useState(1);
 
   console.log(nextId);
   return (
