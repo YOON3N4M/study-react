@@ -1,4 +1,28 @@
 {
-  "todos": [],
-  "username": []
+  "todos": [
+    {
+      "createBy": "세남",
+      "type": "할 것",
+      "todoText": "ㅁㄴㅇㄴㅁㅇ",
+      "isCheck": false,
+      "id": 1
+    },
+    {
+      "createBy": "안녕",
+      "type": "할 것",
+      "todoText": "ㅁㄴㅇㅁㅇㄴ",
+      "isCheck": false,
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "username": "안녕",
+      "id": 1
+    },
+    {
+      "username": "세남",
+      "id": 2
+    }
+  ]
 }

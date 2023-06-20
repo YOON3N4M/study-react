@@ -2,24 +2,37 @@ import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "./TodoTemplate";
 
-export default function InsertTodo({ todos, setTodos, nextId, setNextId }) {
+export default function InsertTodo({
+  todos,
+  setTodos,
+  nextId,
+  setNextId,
+  selectedUser,
+  setSelectedUser,
+}) {
   const [todo, setTodo] = useState("");
+
   const [selectedType, setSelectedType] = useState("할 것");
 
   function onSubmit(event) {
     event.preventDefault();
 
-    let todoTemp = {
-      type: selectedType,
-      todoText: todo,
-      isCheck: false,
-      id: nextId,
-    };
+    if (selectedUser !== "") {
+      let todoTemp = {
+        createBy: selectedUser,
+        type: selectedType,
+        todoText: todo,
+        isCheck: false,
+        id: nextId,
+      };
 
-    axios.post(API_URL, todoTemp);
-    setTodos([...todos, todoTemp]);
-    setNextId((prev) => prev + 1);
-    setTodo("");
+      axios.post(API_URL, todoTemp);
+      setTodos([...todos, todoTemp]);
+      setNextId((prev) => prev + 1);
+      setTodo("");
+    } else {
+      alert("작성자를 선택해주세요!");
+    }
   }
 
   function onTodoTextChange(event) {
@@ -46,7 +59,7 @@ export default function InsertTodo({ todos, setTodos, nextId, setNextId }) {
           <option>할 것</option>
           <option>살 것</option>
         </select>
-        <input onChange={onTodoTextChange} value={todo}></input>
+        <input onChange={onTodoTextChange} value={todo} required></input>
       </form>
     </>
   );
