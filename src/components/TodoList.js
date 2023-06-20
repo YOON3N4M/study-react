@@ -11,7 +11,6 @@ export default function TodoList({ todos, setTodos, setNextId }) {
       const lastIndex = res.data.length - 1;
 
       if (res.data.length > 0) {
-        console.log("문제");
         setNextId(res.data[lastIndex].id + 1);
       } else {
         setNextId(1);
