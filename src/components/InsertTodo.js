@@ -1,6 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "./TodoTemplate";
+import styled from "styled-components";
+import { StyledSelect, StyledTextInput } from "./User";
+
+const InsertTodoContainer = styled.div`
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  select {
+    margin-right: 2rem;
+  }
+`;
 
 export default function InsertTodo({
   todos,
@@ -54,13 +69,20 @@ export default function InsertTodo({
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <select onChange={onTodoTypeChange}>
-          <option>할 것</option>
-          <option>살 것</option>
-        </select>
-        <input onChange={onTodoTextChange} value={todo} required></input>
-      </form>
+      <InsertTodoContainer>
+        <form onSubmit={onSubmit}>
+          <StyledSelect onChange={onTodoTypeChange}>
+            <option>할 것</option>
+            <option>살 것</option>
+          </StyledSelect>
+          <StyledTextInput
+            onChange={onTodoTextChange}
+            value={todo}
+            placeholder="할일..."
+            required
+          ></StyledTextInput>
+        </form>
+      </InsertTodoContainer>
     </>
   );
 }

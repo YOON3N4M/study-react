@@ -8,29 +8,25 @@ import axios from "axios";
 const TodoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: gray;
+  // background-color: gray;
   width: 20vw;
-  height: 20rem;
+
   border-radius: 10px;
   overflow: hidden;
   .todo-header {
-    background-color: #4c598e;
+    background-color: #f8f8f8;
     width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     h1 {
       text-align: center;
-      color: white;
+      color: #666666;
       font-size: 1.5rem;
     }
   }
-  .todo-insert {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: green;
-    width: 100%;
-  }
+
   .todo-contents {
-    background-color: white;
   }
 `;
 
@@ -76,8 +72,6 @@ function TodoTemplate() {
       <TodoContainer>
         <div className="todo-header">
           <h1>일정관리</h1>
-        </div>
-        <div>
           <User
             user={user}
             setUser={setUser}
@@ -87,16 +81,16 @@ function TodoTemplate() {
             setUserArr={setUserArr}
           />
         </div>
-        <div className="todo-insert">
-          <InsertTodo
-            todos={todos}
-            setTodos={setTodos}
-            nextId={nextId}
-            setNextId={setNextId}
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-          />
-        </div>
+
+        <InsertTodo
+          todos={todos}
+          setTodos={setTodos}
+          nextId={nextId}
+          setNextId={setNextId}
+          selectedUser={selectedUser}
+          setSelectedUser={setSelectedUser}
+        />
+
         <div className="todo-contents">
           <TodoList todos={todos} setTodos={setTodos} setNextId={setNextId} />
         </div>
