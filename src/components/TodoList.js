@@ -24,7 +24,36 @@ const StyledClearBtn = styled.button`
   width: 45%;
 `;
 
+const FilterRow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+  select {
+    background-color: #ffffff28;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50%;
+    min-height: 2rem;
+    text-align: center;
+    border: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fefefe;
+    border-radius: 8px;
+    cursor: pointer;
+    option {
+      background-color: #00000069;
+    }
+  }
+`;
+
 const TodoListContainer = styled.div`
+  h2 {
+    color: #f8f8f8;
+  }
   h3 {
     color: #fefefea4;
     margin: 0;
@@ -104,37 +133,47 @@ export default function TodoList({ todos, setTodos, userArr }) {
         <>
           <TodoListContainer className="fadeup">
             <h3>할 일</h3>
-            {todos.length !== 0
-              ? todos
-                  .filter((todo) => todo.type === "할 것")
-                  .filter((todo) => todo.createBy === filterWithCreator)
-                  .map((todo) => (
-                    <TodoItem
-                      setTodos={setTodos}
-                      todos={todos}
-                      todo={todo}
-                      className="fadeup"
-                      key={todo.id}
-                    />
-                  ))
-              : null}
+            {todos
+              .filter((todo) => todo.type === "할 것")
+              .filter((todo) => todo.createBy === filterWithCreator).length !==
+            0 ? (
+              todos
+                .filter((todo) => todo.type === "할 것")
+                .filter((todo) => todo.createBy === filterWithCreator)
+                .map((todo) => (
+                  <TodoItem
+                    setTodos={setTodos}
+                    todos={todos}
+                    todo={todo}
+                    className="fadeup"
+                    key={todo.id}
+                  />
+                ))
+            ) : (
+              <h2>{filterWithCreator}님의 할 일이 없습니다.</h2>
+            )}
           </TodoListContainer>
           <TodoListContainer className="fadeup">
             <h3>살 것</h3>
-            {todos.length !== 0
-              ? todos
-                  .filter((todo) => todo.type === "살 것")
-                  .filter((todo) => todo.createBy === filterWithCreator)
-                  .map((todo) => (
-                    <TodoItem
-                      setTodos={setTodos}
-                      todos={todos}
-                      todo={todo}
-                      className="fadeup"
-                      key={todo.id}
-                    />
-                  ))
-              : null}
+            {todos
+              .filter((todo) => todo.type === "살 것")
+              .filter((todo) => todo.createBy === filterWithCreator).length !==
+            0 ? (
+              todos
+                .filter((todo) => todo.type === "살 것")
+                .filter((todo) => todo.createBy === filterWithCreator)
+                .map((todo) => (
+                  <TodoItem
+                    setTodos={setTodos}
+                    todos={todos}
+                    todo={todo}
+                    className="fadeup"
+                    key={todo.id}
+                  />
+                ))
+            ) : (
+              <h2>{filterWithCreator}님의 살 것이 없습니다.</h2>
+            )}
           </TodoListContainer>
         </>
       );
@@ -156,15 +195,15 @@ export default function TodoList({ todos, setTodos, userArr }) {
         </>
       ) : null}
 
-      <div>
+      <FilterRow>
         <select onChange={onSelectChange}>
           <option>모두</option>
           {userArr.map((user) => (
             <option>{user.username}</option>
           ))}
         </select>
-      </div>
-      {todos.length !== 0 ? <RenderTodo /> : null}
+      </FilterRow>
+      {todos.length !== 0 ? <RenderTodo /> : <h2>메모가 존재하지 않습니다.</h2>}
     </>
   );
 }

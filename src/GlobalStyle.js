@@ -12,7 +12,10 @@ ul{
     padding: 0 0;
     margin: 0 0;
 }
-
+h2{
+    color: #f8f8f8;
+    text-align:center ;
+}
 .fadeup {
   animation: fadeup 0.5s ease-in-out;
   -moz-animation: fadeup 0.5s ease-in-out;
