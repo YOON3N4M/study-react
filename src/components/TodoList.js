@@ -94,7 +94,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
     if (filterWithCreator === "모두") {
       return (
         <>
-          {todoTypes.map((type, index) => (
+          {todoTypes.map((type) => (
             <TodoListContainer>
               <h3>{type}</h3>
               {todos.length !== 0
@@ -118,7 +118,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
         <>
           {todoTypes.map((type) => (
             <TodoListContainer>
-              <h3>할 일</h3>
+              <h3>{type}</h3>
               {todos
                 .filter((todo) => todo.type === type)
                 .filter((todo) => todo.createBy === filterWithCreator)
