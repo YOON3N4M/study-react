@@ -1,6 +1,7 @@
 import axios from "axios";
-import { API_URL_USERS } from "./TodoTemplate";
 import styled from "styled-components";
+
+import { API_URL_USERS } from "./TodoTemplate";
 import { useEffect, useState } from "react";
 
 export const UserContainer = styled.div`

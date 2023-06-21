@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
-import { API_URL } from "./TodoTemplate";
 import styled from "styled-components";
+
+import { useState } from "react";
+import { API_URL, TO_BUY, TO_DO } from "./TodoTemplate";
 import { StyledSelect, StyledTextInput } from "./User";
 
 const InsertTodoContainer = styled.div`
@@ -26,7 +27,7 @@ export default function InsertTodo({
 }) {
   const [todo, setTodo] = useState("");
 
-  const [selectedType, setSelectedType] = useState("할 것");
+  const [selectedType, setSelectedType] = useState(TO_DO);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -55,11 +56,11 @@ export default function InsertTodo({
 
   function onTodoTypeChange(event) {
     switch (event.target.value) {
-      case "살 것":
-        setSelectedType("살 것");
+      case TO_BUY:
+        setSelectedType(TO_BUY);
         break;
-      case "할 것":
-        setSelectedType("할 것");
+      case TO_DO:
+        setSelectedType(TO_DO);
         break;
       default:
         break;
@@ -71,8 +72,8 @@ export default function InsertTodo({
       <InsertTodoContainer className="fadein">
         <form onSubmit={onSubmit}>
           <StyledSelect onChange={onTodoTypeChange}>
-            <option>할 것</option>
-            <option>살 것</option>
+            <option>{TO_DO}</option>
+            <option>{TO_BUY}</option>
           </StyledSelect>
           <StyledTextInput
             onChange={onTodoTextChange}

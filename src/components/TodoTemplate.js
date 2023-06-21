@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+
+import { useEffect, useState } from "react";
 import InsertTodo from "./InsertTodo";
 import TodoList from "./TodoList";
 import User from "./User";
-import axios from "axios";
 
 const TodoContainer = styled.div`
   display: flex;
@@ -40,8 +41,14 @@ checked: boolean,
 }
 
 */
+
+//API
 export const API_URL = "http://localhost:3001/todos";
 export const API_URL_USERS = "http://localhost:3001/users";
+//todo 타입 상수화
+export const ALL = "모두";
+export const TO_BUY = "살 것";
+export const TO_DO = "할 것";
 
 function TodoTemplate() {
   const [todos, setTodos] = useState([]);

@@ -1,8 +1,9 @@
 import axios from "axios";
+import styled from "styled-components";
+
 import { useState } from "react";
 import { useEffect } from "react";
-import { API_URL } from "./TodoTemplate";
-import styled from "styled-components";
+import { ALL, API_URL, TO_BUY, TO_DO } from "./TodoTemplate";
 import TodoItem from "./TodoItem";
 
 const ClearBtnContainer = styled.div`
@@ -63,8 +64,8 @@ const TodoListContainer = styled.div`
 `;
 
 export default function TodoList({ todos, setTodos, userArr }) {
-  const todoTypes = ["할 것", "살 것"];
-  const [filterWithCreator, setFilterWithCreator] = useState("모두");
+  const todoTypes = [TO_DO, TO_BUY];
+  const [filterWithCreator, setFilterWithCreator] = useState(ALL);
 
   function clearAllTodos() {
     if (window.confirm("모든 항목을 삭제합니다. (유저를 구분하지 않습니다.)")) {
@@ -91,7 +92,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
   }
 
   function RenderTodo() {
-    if (filterWithCreator === "모두") {
+    if (filterWithCreator === ALL) {
       return (
         <>
           {todoTypes.map((type) => (
@@ -161,7 +162,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
 
       <FilterRow>
         <select onChange={onSelectChange}>
-          <option>모두</option>
+          <option>{ALL}</option>
           {userArr.map((user) => (
             <option>{user.username}</option>
           ))}

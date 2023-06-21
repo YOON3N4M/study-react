@@ -1,8 +1,9 @@
 // import logo from './logo.svg';
 
+import styled from "styled-components";
+
 import { useState, useCallback, useEffect, useRef } from "react";
 import TodoTemplate from "../src/components/TodoTemplate";
-import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 
 const AppContainer = styled.div`
