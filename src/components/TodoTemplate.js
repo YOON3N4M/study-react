@@ -49,22 +49,46 @@ function TodoTemplate() {
   const [user, setUser] = useState("");
   const [userArr, setUserArr] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
+  const [isDataLoading, setIsDataLoading] = useState({
+    users: false,
+    todos: false,
+  });
 
   function getUserFromDB() {
     axios
       .get(API_URL_USERS)
       .then((res) => {
         setUserArr(res.data);
+        setIsDataLoading((prev) => {
+          return { ...prev, users: true };
+        });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  function getTodosFromDB() {
+    axios
+      .get(API_URL)
+      .then((res) => {
+        setTodos(res.data);
+        setIsDataLoading((prev) => {
+          return { ...prev, todos: true };
+        });
+
+        const lastIndex = res.data.length - 1;
+
+        if (res.data.length > 0) {
+          setNextId(res.data[lastIndex].id + 1);
+        } else {
+          setNextId(1);
+        }
       })
       .catch((error) => console.log(error));
   }
 
   useEffect(() => {
-    console.log(todos);
-  }, [todos]);
-
-  useEffect(() => {
     getUserFromDB();
+    getTodosFromDB();
   }, []);
 
   return (
@@ -79,6 +103,7 @@ function TodoTemplate() {
             setSelectedUser={setSelectedUser}
             userArr={userArr}
             setUserArr={setUserArr}
+            isDataLoading={isDataLoading}
           />
         </div>
 
@@ -92,7 +117,7 @@ function TodoTemplate() {
         />
 
         <div className="todo-contents">
-          <TodoList todos={todos} setTodos={setTodos} setNextId={setNextId} />
+          <TodoList todos={todos} setTodos={setTodos} />
         </div>
       </TodoContainer>
     </>

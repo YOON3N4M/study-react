@@ -52,26 +52,10 @@ const StyledClearBtn = styled.button`
   padding: 0.5rem 2rem;
   background-color: ${(props) => props.color || null};
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  width: 45%;
 `;
 
-export default function TodoList({ todos, setTodos, setNextId }) {
-  function getTodosFromDB() {
-    axios
-      .get(API_URL)
-      .then((res) => {
-        setTodos(res.data);
-
-        const lastIndex = res.data.length - 1;
-
-        if (res.data.length > 0) {
-          setNextId(res.data[lastIndex].id + 1);
-        } else {
-          setNextId(1);
-        }
-      })
-      .catch((error) => console.log(error));
-  }
-
+export default function TodoList({ todos, setTodos }) {
   function deleteTodo(id) {
     setTodos(todos.filter((todos) => todos.id !== id));
     axios.delete(API_URL + "/" + id);
@@ -111,10 +95,6 @@ export default function TodoList({ todos, setTodos, setNextId }) {
       setTodos((todos) => todos.filter((todo) => todo.isCheck !== true));
     }
   }
-
-  useEffect(() => {
-    getTodosFromDB();
-  }, []);
 
   return (
     <>

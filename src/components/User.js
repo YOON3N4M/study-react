@@ -48,6 +48,7 @@ export default function User({
   setSelectedUser,
   userArr,
   setUserArr,
+  isDataLoading,
 }) {
   const [isNewUser, setIsNewUser] = useState(false);
 
@@ -70,15 +71,16 @@ export default function User({
   }
 
   useEffect(() => {
-    if (userArr.length > 0) setSelectedUser(userArr[0].username);
-  }, [userArr]);
+    if (isDataLoading.users && userArr.length > 0) {
+      setSelectedUser(userArr[0].username);
+    }
+  }, [isDataLoading]);
 
   return (
     <>
       <UserContainer>
         {userArr.length > 0 && !isNewUser ? (
           <>
-            {" "}
             <div>
               <StyledSelect value={selectedUser} onChange={onChangeSelect}>
                 {userArr.map((user) => (

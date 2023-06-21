@@ -23,7 +23,6 @@ export default function InsertTodo({
   nextId,
   setNextId,
   selectedUser,
-  setSelectedUser,
 }) {
   const [todo, setTodo] = useState("");
 
@@ -33,7 +32,7 @@ export default function InsertTodo({
     event.preventDefault();
 
     if (selectedUser !== "") {
-      let todoTemp = {
+      const todoTemp = {
         createBy: selectedUser,
         type: selectedType,
         todoText: todo,
@@ -59,14 +58,14 @@ export default function InsertTodo({
       case "살 것":
         setSelectedType("살 것");
         break;
-      case "할것":
+      case "할 것":
         setSelectedType("할 것");
         break;
       default:
         break;
     }
   }
-  console.log(selectedUser);
+
   return (
     <>
       <InsertTodoContainer>
