@@ -7,11 +7,9 @@ import GlobalStyle from "./GlobalStyle";
 
 const AppContainer = styled.div`
   width: 100vw;
-  min-height: 1000px;
   display: flex;
   justify-content: center;
-  padding: 10rem 0;
-  background-color: #0584bb;
+  padding: 4rem 0;
 `;
 
 const App = () => {

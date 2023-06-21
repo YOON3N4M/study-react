@@ -8,9 +8,9 @@ import axios from "axios";
 const TodoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  // background-color: gray;
+  background-color: #dbdbdb65;
   width: 20vw;
-
+  padding: 2rem 3rem;
   border-radius: 10px;
   overflow: hidden;
   .todo-header {
