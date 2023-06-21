@@ -20,6 +20,7 @@ body{
     margin: 0 0;
     font-family: "S-CoreDream-3Light";
     background-color: #0584bb;
+    //color: #666666
 }
 ul{
     padding: 0 0;

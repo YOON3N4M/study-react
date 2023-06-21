@@ -63,7 +63,7 @@ const TodoListContainer = styled.div`
 `;
 
 export default function TodoList({ todos, setTodos, userArr }) {
-  const todoTypes = ["할 일", "살 것"];
+  const todoTypes = ["할 것", "살 것"];
   const [filterWithCreator, setFilterWithCreator] = useState("모두");
 
   function clearAllTodos() {
@@ -94,87 +94,53 @@ export default function TodoList({ todos, setTodos, userArr }) {
     if (filterWithCreator === "모두") {
       return (
         <>
-          <TodoListContainer className="fadeup">
-            <h3>할 일</h3>
-            {todos.length !== 0
-              ? todos
-                  .filter((todo) => todo.type === "할 것")
-                  .map((todo) => (
-                    <TodoItem
-                      setTodos={setTodos}
-                      todos={todos}
-                      todo={todo}
-                      className="fadeup"
-                      key={todo.id}
-                    />
-                  ))
-              : null}
-          </TodoListContainer>
-          <TodoListContainer className="fadeup">
-            <h3>살 것</h3>
-            {todos.length !== 0
-              ? todos
-                  .filter((todo) => todo.type === "살 것")
-                  .map((todo) => (
-                    <TodoItem
-                      setTodos={setTodos}
-                      todos={todos}
-                      todo={todo}
-                      className="fadeup"
-                      key={todo.id}
-                    />
-                  ))
-              : null}
-          </TodoListContainer>
+          {todoTypes.map((type, index) => (
+            <TodoListContainer className="fadeup">
+              <h3>{type}</h3>
+              {todos.length !== 0
+                ? todos
+                    .filter((todo) => todo.type === type)
+                    .map((todo) => (
+                      <TodoItem
+                        setTodos={setTodos}
+                        todos={todos}
+                        todo={todo}
+                        className="fadeup"
+                        key={todo.id}
+                      />
+                    ))
+                : null}
+            </TodoListContainer>
+          ))}
         </>
       );
     } else {
       return (
         <>
-          <TodoListContainer className="fadeup">
-            <h3>할 일</h3>
-            {todos
-              .filter((todo) => todo.type === "할 것")
-              .filter((todo) => todo.createBy === filterWithCreator).length !==
-            0 ? (
-              todos
-                .filter((todo) => todo.type === "할 것")
+          {todoTypes.map((type) => (
+            <TodoListContainer className="fadeup">
+              <h3>할 일</h3>
+              {todos
+                .filter((todo) => todo.type === type)
                 .filter((todo) => todo.createBy === filterWithCreator)
-                .map((todo) => (
-                  <TodoItem
-                    setTodos={setTodos}
-                    todos={todos}
-                    todo={todo}
-                    className="fadeup"
-                    key={todo.id}
-                  />
-                ))
-            ) : (
-              <h2>{filterWithCreator}님의 할 일이 없습니다.</h2>
-            )}
-          </TodoListContainer>
-          <TodoListContainer className="fadeup">
-            <h3>살 것</h3>
-            {todos
-              .filter((todo) => todo.type === "살 것")
-              .filter((todo) => todo.createBy === filterWithCreator).length !==
-            0 ? (
-              todos
-                .filter((todo) => todo.type === "살 것")
-                .filter((todo) => todo.createBy === filterWithCreator)
-                .map((todo) => (
-                  <TodoItem
-                    setTodos={setTodos}
-                    todos={todos}
-                    todo={todo}
-                    className="fadeup"
-                    key={todo.id}
-                  />
-                ))
-            ) : (
-              <h2>{filterWithCreator}님의 살 것이 없습니다.</h2>
-            )}
-          </TodoListContainer>
+                .length !== 0 ? (
+                todos
+                  .filter((todo) => todo.type === type)
+                  .filter((todo) => todo.createBy === filterWithCreator)
+                  .map((todo) => (
+                    <TodoItem
+                      setTodos={setTodos}
+                      todos={todos}
+                      todo={todo}
+                      className="fadeup"
+                      key={todo.id}
+                    />
+                  ))
+              ) : (
+                <h2>{filterWithCreator}님의 할 일이 없습니다.</h2>
+              )}
+            </TodoListContainer>
+          ))}
         </>
       );
     }
