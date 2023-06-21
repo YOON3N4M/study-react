@@ -14,7 +14,7 @@ const TodoContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   .todo-header {
-    background-color: #f8f8f8;
+    background-color: #ffffffbe;
     width: 100%;
     border-radius: 10px;
     margin-bottom: 0.3rem;

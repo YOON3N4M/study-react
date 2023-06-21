@@ -1,14 +1,15 @@
 import axios from "axios";
 import { API_URL_USERS } from "./TodoTemplate";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding: 1rem 2rem;
   form {
     display: inline;
@@ -67,6 +68,10 @@ export default function User({
   function onChangeSelect(event) {
     setSelectedUser(event.target.value);
   }
+
+  useEffect(() => {
+    if (userArr.length > 0) setSelectedUser(userArr[0].username);
+  }, [userArr]);
 
   return (
     <>

@@ -66,7 +66,7 @@ export default function InsertTodo({
         break;
     }
   }
-
+  console.log(selectedUser);
   return (
     <>
       <InsertTodoContainer>
