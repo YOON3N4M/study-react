@@ -1,25 +1,39 @@
 {
   "todos": [
     {
-      "createBy": "세남",
+      "createBy": "길동",
       "type": "할 것",
-      "todoText": "우엥",
+      "todoText": "동에 번쩍",
       "isCheck": false,
       "id": 1
     },
     {
-      "createBy": "세남",
-      "type": "살 것",
-      "todoText": "감자",
+      "createBy": "길동",
+      "type": "할 것",
+      "todoText": "서에 번쩍",
       "isCheck": false,
       "id": 2
     },
     {
+      "createBy": "길동",
+      "type": "살 것",
+      "todoText": "짚신",
+      "isCheck": false,
+      "id": 3
+    },
+    {
       "createBy": "세남",
-      "type": "할 것",
-      "todoText": "감자캐기",
+      "type": "살 것",
+      "todoText": "커피",
       "isCheck": false,
       "id": 4
+    },
+    {
+      "createBy": "세남",
+      "type": "할 것",
+      "todoText": "출근",
+      "isCheck": false,
+      "id": 5
     }
   ],
   "users": [
@@ -30,6 +44,10 @@
     {
       "username": "바보",
       "id": 2
+    },
+    {
+      "username": "길동",
+      "id": 3
     }
   ]
 }

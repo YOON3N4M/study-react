@@ -3,47 +3,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { API_URL } from "./TodoTemplate";
 import styled from "styled-components";
+import TodoItem from "./TodoItem";
 
 const ClearBtnContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
   margin-top: 1rem;
-  margin-bottom: 0.5rem;
+
   // background-color: #f8f8f8;
   // box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-`;
-
-const TodoItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  min-height: 2rem;
-  border-radius: 10px;
-  margin-bottom: 0.2rem;
-  padding: 0.5rem 1rem;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  .top-row {
-    width: 80%;
-
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10rem;
-    align-items: center;
-  }
-
-  .bottom-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    span {
-      font-size: 0.2rem;
-      font-weight: bold;
-      color: #666666;
-    }
-  }
 `;
 
 const StyledClearBtn = styled.button`
@@ -58,31 +27,15 @@ const StyledClearBtn = styled.button`
 const TodoListContainer = styled.div`
   h3 {
     color: #fefefea4;
+    margin: 0;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
-export default function TodoList({ todos, setTodos }) {
+export default function TodoList({ todos, setTodos, userArr }) {
   const todoTypes = ["할 일", "살 것"];
-
-  function deleteTodo(id) {
-    setTodos(todos.filter((todos) => todos.id !== id));
-    axios.delete(API_URL + "/" + id);
-  }
-
-  function onChangeCheckBox(todoObj) {
-    const checkReverse = !todoObj.isCheck;
-
-    setTodos((todos) =>
-      todos.map((todo) =>
-        todo.id === todoObj.id ? { ...todo, isCheck: checkReverse } : todo
-      )
-    );
-
-    axios.put(API_URL + "/" + todoObj.id, {
-      ...todoObj,
-      isCheck: checkReverse,
-    });
-  }
+  const [filterWithCreator, setFilterWithCreator] = useState("모두");
 
   function clearAllTodos() {
     if (window.confirm("모든 항목을 삭제합니다. (유저를 구분하지 않습니다.)")) {
@@ -104,71 +57,114 @@ export default function TodoList({ todos, setTodos }) {
     }
   }
 
+  function onSelectChange(event) {
+    setFilterWithCreator(event.target.value);
+  }
+
+  function RenderTodo() {
+    if (filterWithCreator === "모두") {
+      return (
+        <>
+          <TodoListContainer className="fadeup">
+            <h3>할 일</h3>
+            {todos.length !== 0
+              ? todos
+                  .filter((todo) => todo.type === "할 것")
+                  .map((todo) => (
+                    <TodoItem
+                      setTodos={setTodos}
+                      todos={todos}
+                      todo={todo}
+                      className="fadeup"
+                      key={todo.id}
+                    />
+                  ))
+              : null}
+          </TodoListContainer>
+          <TodoListContainer className="fadeup">
+            <h3>살 것</h3>
+            {todos.length !== 0
+              ? todos
+                  .filter((todo) => todo.type === "살 것")
+                  .map((todo) => (
+                    <TodoItem
+                      setTodos={setTodos}
+                      todos={todos}
+                      todo={todo}
+                      className="fadeup"
+                      key={todo.id}
+                    />
+                  ))
+              : null}
+          </TodoListContainer>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <TodoListContainer className="fadeup">
+            <h3>할 일</h3>
+            {todos.length !== 0
+              ? todos
+                  .filter((todo) => todo.type === "할 것")
+                  .filter((todo) => todo.createBy === filterWithCreator)
+                  .map((todo) => (
+                    <TodoItem
+                      setTodos={setTodos}
+                      todos={todos}
+                      todo={todo}
+                      className="fadeup"
+                      key={todo.id}
+                    />
+                  ))
+              : null}
+          </TodoListContainer>
+          <TodoListContainer className="fadeup">
+            <h3>살 것</h3>
+            {todos.length !== 0
+              ? todos
+                  .filter((todo) => todo.type === "살 것")
+                  .filter((todo) => todo.createBy === filterWithCreator)
+                  .map((todo) => (
+                    <TodoItem
+                      setTodos={setTodos}
+                      todos={todos}
+                      todo={todo}
+                      className="fadeup"
+                      key={todo.id}
+                    />
+                  ))
+              : null}
+          </TodoListContainer>
+        </>
+      );
+    }
+  }
+
   return (
     <>
       {todos.length !== 0 ? (
         <>
-          <ClearBtnContainer>
-            <StyledClearBtn className="fadeup" onClick={clearCheckedTodo}>
+          <ClearBtnContainer className="fadeup">
+            <StyledClearBtn onClick={clearCheckedTodo}>
               체크된 항목 삭제
             </StyledClearBtn>
-            <StyledClearBtn
-              className="fadeup"
-              color={"#DA4C1F"}
-              onClick={clearAllTodos}
-            >
+            <StyledClearBtn color={"#DA4C1F"} onClick={clearAllTodos}>
               전체 항목 삭제
             </StyledClearBtn>
           </ClearBtnContainer>
         </>
       ) : null}
 
-      <TodoListContainer>
-        <h3>할 일</h3>
-        {todos.length !== 0
-          ? todos
-              .filter((todo) => todo.type === "할 것")
-              .map((todo) => (
-                <TodoItem className="fadeup" key={todo.id}>
-                  <div className="top-row">
-                    <input
-                      onChange={() => onChangeCheckBox(todo)}
-                      type="checkbox"
-                      checked={todo.isCheck}
-                    />
-                    <span>{todo.todoText}</span>
-                    <button onClick={() => deleteTodo(todo.id)}>삭제</button>
-                  </div>
-                  <div className="bottom-row">
-                    <span>{todo.createBy}</span>
-                  </div>
-                </TodoItem>
-              ))
-          : null}
-      </TodoListContainer>
-      <TodoListContainer>
-        <h3>살 것</h3>
-        {todos.length !== 0
-          ? todos
-              .filter((todo) => todo.type === "살 것")
-              .map((todo) => (
-                <TodoItem className="fadeup" key={todo.id}>
-                  <div className="top-row">
-                    <input
-                      onChange={() => onChangeCheckBox(todo)}
-                      type="checkbox"
-                      checked={todo.isCheck}
-                    />
-                    <span>{todo.todoText}</span>
-                    <button onClick={() => deleteTodo(todo.id)}>삭제</button>
-                  </div>
-                  <div className="bottom-row">
-                    <span>{todo.createBy}</span>
-                  </div>
-                </TodoItem>
-              ))
-          : null}
-      </TodoListContainer>
+      <div>
+        <select onChange={onSelectChange}>
+          <option>모두</option>
+          {userArr.map((user) => (
+            <option>{user.username}</option>
+          ))}
+        </select>
+      </div>
+      {todos.length !== 0 ? <RenderTodo /> : null}
     </>
   );
 }

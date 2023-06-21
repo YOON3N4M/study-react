@@ -59,12 +59,16 @@ export default function User({
 
   function onSubmit(event) {
     event.preventDefault();
-    const userTemp = { username: user };
-    axios.post(API_URL_USERS, userTemp);
-    setUserArr((prev) => [...prev, userTemp]);
-    setSelectedUser(user);
-    setUser("");
-    setIsNewUser(false);
+    if (user !== "모두") {
+      const userTemp = { username: user };
+      axios.post(API_URL_USERS, userTemp);
+      setUserArr((prev) => [...prev, userTemp]);
+      setSelectedUser(user);
+      setUser("");
+      setIsNewUser(false);
+    } else {
+      alert("모두라는 이름은 사용 할 수 없습니다.");
+    }
   }
 
   function onChangeSelect(event) {
