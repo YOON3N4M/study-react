@@ -14,6 +14,20 @@ const ClearBtnContainer = styled.div`
   // box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 `;
 
+const FilterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  .top-row {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
 const TodoItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,6 +70,8 @@ const StyledClearBtn = styled.button`
 `;
 
 export default function TodoList({ todos, setTodos }) {
+  const [isFilterHide, setIsFilterHide] = useState(true);
+
   function deleteTodo(id) {
     setTodos(todos.filter((todos) => todos.id !== id));
     axios.delete(API_URL + "/" + id);
@@ -99,20 +115,40 @@ export default function TodoList({ todos, setTodos }) {
   return (
     <>
       {todos.length !== 0 ? (
-        <ClearBtnContainer>
-          <StyledClearBtn onClick={ClearCheckedTodos}>
-            체크된 항목 삭제
-          </StyledClearBtn>
-          <StyledClearBtn color={"#DA4C1F"} onClick={clearAllTodos}>
-            전체 항목 삭제
-          </StyledClearBtn>
-        </ClearBtnContainer>
+        <>
+          <ClearBtnContainer>
+            <StyledClearBtn className="fadeup" onClick={ClearCheckedTodos}>
+              체크된 항목 삭제
+            </StyledClearBtn>
+            <StyledClearBtn
+              className="fadeup"
+              color={"#DA4C1F"}
+              onClick={clearAllTodos}
+            >
+              전체 항목 삭제
+            </StyledClearBtn>
+          </ClearBtnContainer>
+          <FilterContainer>
+            <div className="top-row">
+              <button onClick={() => setIsFilterHide((prev) => !prev)}>
+                필터
+              </button>
+            </div>
+            {isFilterHide ? null : (
+              <div className="bottom-row">
+                {" "}
+                <select></select>
+                <select></select>
+              </div>
+            )}
+          </FilterContainer>
+        </>
       ) : null}
 
       <ul>
         {todos.length !== 0
           ? todos.map((todo) => (
-              <TodoItem key={todo.id}>
+              <TodoItem className="fadeup" key={todo.id}>
                 <div className="top-row">
                   <input
                     onChange={() => onChangeCheckBox(todo)}

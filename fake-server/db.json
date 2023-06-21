@@ -1,12 +1,27 @@
 {
-  "todos": [],
+  "todos": [
+    {
+      "createBy": "세남",
+      "type": "할 것",
+      "todoText": "가가가",
+      "isCheck": false,
+      "id": 3
+    },
+    {
+      "createBy": "세남",
+      "type": "할 것",
+      "todoText": "뭐잉",
+      "isCheck": false,
+      "id": 4
+    }
+  ],
   "users": [
     {
       "username": "세남",
       "id": 1
     },
     {
-      "username": "개똥",
+      "username": "바보",
       "id": 2
     }
   ]

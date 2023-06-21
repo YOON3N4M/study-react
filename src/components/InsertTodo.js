@@ -68,7 +68,7 @@ export default function InsertTodo({
 
   return (
     <>
-      <InsertTodoContainer>
+      <InsertTodoContainer className="fadein">
         <form onSubmit={onSubmit}>
           <StyledSelect onChange={onTodoTypeChange}>
             <option>할 것</option>
@@ -77,7 +77,7 @@ export default function InsertTodo({
           <StyledTextInput
             onChange={onTodoTextChange}
             value={todo}
-            placeholder="할일..."
+            placeholder="메모..."
             required
           ></StyledTextInput>
         </form>

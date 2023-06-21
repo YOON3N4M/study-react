@@ -94,7 +94,7 @@ function TodoTemplate() {
   return (
     <>
       <TodoContainer>
-        <div className="todo-header">
+        <div className="todo-header fadein">
           <h1>일정관리</h1>
           <User
             user={user}

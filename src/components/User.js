@@ -23,6 +23,7 @@ export const StyledTextInput = styled.input`
   min-height: 2rem;
   width: ${(props) => props.customWidth || null};
   margin-right: 1rem;
+  background-color: #d3d3d33d;
 `;
 
 const StyledSubmitBtn = styled.button`
