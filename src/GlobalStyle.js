@@ -32,6 +32,15 @@ ul{
   -o-animation: fadein 0.3s ease;
 }
 
+.fadedown {
+    animation: fadedown 0.3s ease;
+  -moz-animation: fadedown 0.3s ease;
+  /* Firefox */
+  -webkit-animation: fadedown 0.3s ease;
+  /* Safari and Chrome */
+  -o-animation: fadedown 0.3s ease;
+}
+
 @keyframes fadeup {
   from {
     opacity: 0;
@@ -123,6 +132,57 @@ ul{
 
   to {
     opacity: 100%;
+  }
+}
+
+@keyframes fadedown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: none;
+  }
+}
+
+@-moz-keyframes fadedown {
+  /* Firefox */
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: none;
+  }
+}
+
+@-webkit-keyframes fadedown {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: none;
+  }
+}
+
+@-o-keyframes fadedown {
+  /* Opera */
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: none;
   }
 }
 `;

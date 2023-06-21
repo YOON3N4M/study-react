@@ -3,14 +3,21 @@
     {
       "createBy": "세남",
       "type": "할 것",
-      "todoText": "가가가",
+      "todoText": "우엥",
       "isCheck": false,
-      "id": 3
+      "id": 1
+    },
+    {
+      "createBy": "세남",
+      "type": "살 것",
+      "todoText": "감자",
+      "isCheck": false,
+      "id": 2
     },
     {
       "createBy": "세남",
       "type": "할 것",
-      "todoText": "뭐잉",
+      "todoText": "감자캐기",
       "isCheck": false,
       "id": 4
     }

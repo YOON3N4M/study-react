@@ -21,7 +21,7 @@ const TodoContainer = styled.div`
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     h1 {
       text-align: center;
-      color: #666666;
+      color: #424242;
       font-size: 1.5rem;
     }
   }
@@ -117,7 +117,12 @@ function TodoTemplate() {
         />
 
         <div className="todo-contents">
-          <TodoList todos={todos} setTodos={setTodos} />
+          <TodoList
+            todos={todos}
+            setTodos={setTodos}
+            userArr={userArr}
+            isDataLoading={isDataLoading}
+          />
         </div>
       </TodoContainer>
     </>
