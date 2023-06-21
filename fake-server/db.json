@@ -24,13 +24,6 @@
     {
       "createBy": "길동",
       "type": "할 것",
-      "todoText": "동에번쩍",
-      "isCheck": false,
-      "id": 4
-    },
-    {
-      "createBy": "길동",
-      "type": "할 것",
       "todoText": "서에번쩍",
       "isCheck": false,
       "id": 5

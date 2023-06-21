@@ -95,7 +95,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
       return (
         <>
           {todoTypes.map((type, index) => (
-            <TodoListContainer className="fadeup">
+            <TodoListContainer>
               <h3>{type}</h3>
               {todos.length !== 0
                 ? todos
@@ -105,7 +105,6 @@ export default function TodoList({ todos, setTodos, userArr }) {
                         setTodos={setTodos}
                         todos={todos}
                         todo={todo}
-                        className="fadeup"
                         key={todo.id}
                       />
                     ))
@@ -118,7 +117,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
       return (
         <>
           {todoTypes.map((type) => (
-            <TodoListContainer className="fadeup">
+            <TodoListContainer>
               <h3>할 일</h3>
               {todos
                 .filter((todo) => todo.type === type)
@@ -132,7 +131,6 @@ export default function TodoList({ todos, setTodos, userArr }) {
                       setTodos={setTodos}
                       todos={todos}
                       todo={todo}
-                      className="fadeup"
                       key={todo.id}
                     />
                   ))
@@ -150,7 +148,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
     <>
       {todos.length !== 0 ? (
         <>
-          <ClearBtnContainer className="fadeup">
+          <ClearBtnContainer>
             <StyledClearBtn onClick={clearCheckedTodo}>
               체크된 항목 삭제
             </StyledClearBtn>

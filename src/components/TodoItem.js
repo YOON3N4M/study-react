@@ -56,7 +56,7 @@ export default function TodoItem({ todo, todos, setTodos }) {
 
   return (
     <>
-      <TodoItemContainer className="fadeup" key={todo.id}>
+      <TodoItemContainer key={todo.id}>
         <div className="top-row">
           <input
             onChange={() => onChangeCheckBox(todo)}
