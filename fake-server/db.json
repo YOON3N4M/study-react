@@ -38,9 +38,23 @@
     {
       "createBy": "현우",
       "type": "할 것",
-      "todoText": "세미나준비",
+      "todoText": "세미나 준비하기",
       "isCheck": false,
       "id": 10
+    },
+    {
+      "createBy": "개똥",
+      "type": "할 것",
+      "todoText": "마당쓸기",
+      "isCheck": false,
+      "id": 12
+    },
+    {
+      "createBy": "개똥",
+      "type": "살 것",
+      "todoText": "빗자루",
+      "isCheck": false,
+      "id": 13
     }
   ],
   "users": [

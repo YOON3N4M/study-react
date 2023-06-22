@@ -18,7 +18,7 @@ const TodoItemContainer = styled.div`
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   .top-row {
     display: flex;
-    width: 17vw;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     span {

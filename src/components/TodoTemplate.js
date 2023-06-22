@@ -11,6 +11,9 @@ const TodoContainer = styled.div`
   flex-direction: column;
   background-color: #dbdbdb65;
   width: 20vw;
+  min-width: 360px;
+  max-width: 384px;
+  min-height: 300px;
   padding: 2rem 3rem;
   border-radius: 10px;
   overflow: hidden;
