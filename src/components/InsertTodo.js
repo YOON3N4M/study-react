@@ -26,12 +26,10 @@ export default function InsertTodo({
   selectedUser,
 }) {
   const [todo, setTodo] = useState("");
-
   const [selectedType, setSelectedType] = useState(TO_DO);
 
   function onSubmit(event) {
     event.preventDefault();
-
     if (selectedUser !== "") {
       const todoTemp = {
         createBy: selectedUser,
@@ -40,7 +38,6 @@ export default function InsertTodo({
         isCheck: false,
         id: nextId,
       };
-
       axios
         .post(API_URL, todoTemp)
         .then((res) => {

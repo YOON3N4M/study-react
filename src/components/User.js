@@ -63,11 +63,15 @@ export default function User({
     event.preventDefault();
     if (user !== "모두") {
       const userTemp = { username: user };
-      axios.post(API_URL_USERS, userTemp);
-      setUserArr((prev) => [...prev, userTemp]);
-      setSelectedUser(user);
-      setUser("");
-      setIsNewUser(false);
+      axios
+        .post(API_URL_USERS, userTemp)
+        .then(() => {
+          setUserArr((prev) => [...prev, userTemp]);
+          setSelectedUser(user);
+          setUser("");
+          setIsNewUser(false);
+        })
+        .catch((err) => alert(`유저 등록에 실패했습니다. 사유:${err.message}`));
     } else {
       alert("모두라는 이름은 사용 할 수 없습니다.");
     }

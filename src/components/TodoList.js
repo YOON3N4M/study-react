@@ -70,9 +70,13 @@ export default function TodoList({ todos, setTodos, userArr }) {
   function clearAllTodos() {
     if (window.confirm("모든 항목을 삭제합니다. (유저를 구분하지 않습니다.)")) {
       //서버
-      todos.forEach((todo) => axios.delete(API_URL + "/" + todo.id));
+      todos
+        .forEach((todo) => axios.delete(API_URL + "/" + todo.id))
+        .then(() => setTodos([]))
+        .catch((err) =>
+          alert(`전체 삭제에 실패하였습니다. 사유:${err.message}`)
+        );
       //로컬
-      setTodos([]);
     }
   }
 
@@ -80,10 +84,19 @@ export default function TodoList({ todos, setTodos, userArr }) {
     //window.confirm("완료된 항목을 모두 삭제하나요?");
     if (window.confirm("완료한 모든 항목을 삭제합니다.")) {
       todos.forEach((todo) =>
-        todo.isCheck ? axios.delete(API_URL + "/" + todo.id) : null
+        todo.isCheck
+          ? axios
+              .delete(API_URL + "/" + todo.id)
+              .then(() => {
+                setTodos((todos) =>
+                  todos.filter((todo) => todo.isCheck !== true)
+                );
+              })
+              .catch((err) =>
+                alert(`전체 삭제에 실패하였습니다. 사유:${err.message}`)
+              )
+          : null
       );
-
-      setTodos((todos) => todos.filter((todo) => todo.isCheck !== true));
     }
   }
 
@@ -137,7 +150,9 @@ export default function TodoList({ todos, setTodos, userArr }) {
                     />
                   ))
               ) : (
-                <h2>{filterWithCreator}님의 할 일이 없습니다.</h2>
+                <h2>
+                  {filterWithCreator}님의 {type}이 없습니다.
+                </h2>
               )}
             </TodoListContainer>
           ))}

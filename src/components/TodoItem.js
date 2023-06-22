@@ -66,7 +66,6 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
         todo.id === todoObj.id ? { ...todo, isCheck: checkReverse } : todo
       )
     );
-
     axios.put(API_URL + "/" + todoObj.id, {
       ...todoObj,
       isCheck: checkReverse,
@@ -76,6 +75,7 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
   function onChangeEditInput(event) {
     setTodoText(event.target.value);
   }
+
   function onEditInputSubmit(event) {
     event.preventDefault();
     if (todo.todoText !== todoText) {
@@ -83,7 +83,6 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
         ...todo,
         todoText: todoText,
       };
-
       axios
         .put(API_URL + "/" + todo.id, todoTemp)
         .then((res) => {
@@ -100,6 +99,7 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
   useEffect(() => {
     setTodoText(todo.todoText);
   }, []);
+
   return (
     <>
       <TodoItemContainer key={todo.id}>
