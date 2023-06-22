@@ -41,10 +41,14 @@ export default function InsertTodo({
         id: nextId,
       };
 
-      axios.post(API_URL, todoTemp);
-      setTodos([...todos, todoTemp]);
-      setNextId((prev) => prev + 1);
-      setTodo("");
+      axios
+        .post(API_URL, todoTemp)
+        .then((res) => {
+          setTodos([...todos, todoTemp]);
+          setNextId((prev) => prev + 1);
+          setTodo("");
+        })
+        .catch((err) => alert(`메모등록을 실패했습니다. 사유:${err.message}`));
     } else {
       alert("작성자를 선택해주세요!");
     }

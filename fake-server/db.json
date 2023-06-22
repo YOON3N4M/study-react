@@ -34,6 +34,13 @@
       "todoText": "커피",
       "isCheck": false,
       "id": 7
+    },
+    {
+      "createBy": "현우",
+      "type": "할 것",
+      "todoText": "세미나 준비",
+      "isCheck": false,
+      "id": 8
     }
   ],
   "users": [
@@ -48,6 +55,10 @@
     {
       "username": "개똥",
       "id": 4
+    },
+    {
+      "username": "현우",
+      "id": 5
     }
   ]
 }

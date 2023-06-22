@@ -101,12 +101,13 @@ export default function TodoList({ todos, setTodos, userArr }) {
               {todos.length !== 0
                 ? todos
                     .filter((todo) => todo.type === type)
-                    .map((todo) => (
+                    .map((todo, index) => (
                       <TodoItem
                         setTodos={setTodos}
                         todos={todos}
                         todo={todo}
                         key={todo.id}
+                        index={index}
                       />
                     ))
                 : null}

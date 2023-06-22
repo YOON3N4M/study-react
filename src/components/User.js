@@ -25,6 +25,7 @@ export const StyledTextInput = styled.input`
   width: ${(props) => props.customWidth || null};
   margin-right: 1rem;
   background-color: #d3d3d33d;
+  text-align: center;
 `;
 
 const StyledSubmitBtn = styled.button`
@@ -93,7 +94,7 @@ export default function User({
                   <option>{user.username}</option>
                 ))}
               </StyledSelect>
-              <span>님으로 작성중</span>
+              <span> 님으로 작성중</span>
             </div>
             <button onClick={() => setIsNewUser((prev) => !prev)}>
               새 유저 등록
