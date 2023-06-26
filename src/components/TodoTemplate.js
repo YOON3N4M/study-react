@@ -46,7 +46,7 @@ checked: boolean,
 */
 
 //API
-export const API_URL = "http://localhost:3001/todos";
+export const API_URL_TODOS = "http://localhost:3001/todos";
 export const API_URL_USERS = "http://localhost:3001/users";
 //todo 타입 상수화
 export const ALL = "모두";
@@ -78,7 +78,7 @@ function TodoTemplate() {
 
   function getTodosFromDB() {
     axios
-      .get(API_URL)
+      .get(API_URL_TODOS)
       .then((res) => {
         setTodos(res.data);
         setIsDataLoading((prev) => {

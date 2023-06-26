@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useState } from "react";
 import { useEffect } from "react";
-import { ALL, API_URL, TO_BUY, TO_DO } from "./TodoTemplate";
+import { ALL, API_URL_TODOS, TO_BUY, TO_DO } from "./TodoTemplate";
 import TodoItem from "./TodoItem";
 
 const ClearBtnContainer = styled.div`
@@ -71,7 +71,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
     if (window.confirm("모든 항목을 삭제합니다. (유저를 구분하지 않습니다.)")) {
       //서버
       todos
-        .forEach((todo) => axios.delete(API_URL + "/" + todo.id))
+        .forEach((todo) => axios.delete(API_URL_TODOS + "/" + todo.id))
         .then(() => setTodos([]))
         .catch((err) =>
           alert(`전체 삭제에 실패하였습니다. 사유:${err.message}`)
@@ -86,7 +86,7 @@ export default function TodoList({ todos, setTodos, userArr }) {
       todos.forEach((todo) =>
         todo.isCheck
           ? axios
-              .delete(API_URL + "/" + todo.id)
+              .delete(API_URL_TODOS + "/" + todo.id)
               .then(() => {
                 setTodos((todos) =>
                   todos.filter((todo) => todo.isCheck !== true)

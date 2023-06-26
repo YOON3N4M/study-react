@@ -2,7 +2,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 import { useState } from "react";
-import { API_URL, TO_BUY, TO_DO } from "./TodoTemplate";
+import { API_URL_TODOS, TO_BUY, TO_DO } from "./TodoTemplate";
 import { StyledSelect, StyledTextInput } from "./User";
 
 const InsertTodoContainer = styled.div`
@@ -39,7 +39,7 @@ export default function InsertTodo({
         id: nextId,
       };
       axios
-        .post(API_URL, todoTemp)
+        .post(API_URL_TODOS, todoTemp)
         .then((res) => {
           setTodos([...todos, todoTemp]);
           setNextId((prev) => prev + 1);

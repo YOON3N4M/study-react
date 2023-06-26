@@ -1,7 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
 
-import { API_URL } from "./TodoTemplate";
+import { API_URL_TODOS } from "./TodoTemplate";
 import { useState } from "react";
 import { useEffect } from "react";
 import { StyledTextInput } from "./User";
@@ -53,7 +53,7 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
 
   function deleteTodo(id) {
     axios
-      .delete(API_URL + "/" + id)
+      .delete(API_URL_TODOS + "/" + id)
       .then((res) => setTodos(todos.filter((todos) => todos.id !== id)))
       .catch((err) => alert(`메모삭제를 실패했습니다. 사유:${err.message}`));
   }
@@ -66,7 +66,7 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
         todo.id === todoObj.id ? { ...todo, isCheck: checkReverse } : todo
       )
     );
-    axios.put(API_URL + "/" + todoObj.id, {
+    axios.put(API_URL_TODOS + "/" + todoObj.id, {
       ...todoObj,
       isCheck: checkReverse,
     });
@@ -84,7 +84,7 @@ export default function TodoItem({ todo, todos, setTodos, index }) {
         todoText: todoText,
       };
       axios
-        .put(API_URL + "/" + todo.id, todoTemp)
+        .put(API_URL_TODOS + "/" + todo.id, todoTemp)
         .then((res) => {
           todos.splice(index, 1, res.data);
           setIsEditing(false);
